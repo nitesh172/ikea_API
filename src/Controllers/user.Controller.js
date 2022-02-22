@@ -7,9 +7,4 @@ const router = Router();
 
 router.get("", crudController(User, "User").get)
 
-
-
-
-
-
 module.exports = router;
