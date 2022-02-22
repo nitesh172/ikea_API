@@ -1,7 +1,7 @@
 const redis = require("redis")
 
 const client = redis.createClient({
-  url: "redis://:p4a73687573f6b27d7af5350617235335350b58ef0fa07d3163287141e9fc9be2@ec2-204-236-200-151.compute-1.amazonaws.com:10659",
+  url: "redis://:p22ad2a5ed7d46239e924183f2731f57cefd182a4a5704eed51e3660c83092375@ec2-54-242-101-248.compute-1.amazonaws.com:30559",
 })
 
 client.on("connect", (err) => {
