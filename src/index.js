@@ -9,7 +9,7 @@ app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 
 
-const userController = require("./Controllers/user.Controller")
+const userController = require("./Controllers/user.Controller");
 
 app.use("/users", userController);
 
