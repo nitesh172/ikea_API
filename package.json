@@ -1,0 +1,25 @@
+{
+  "name": "ikea_api",
+  "version": "1.0.0",
+  "description": "ikea api backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/server",
+    "dev": "nodemon src/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nitesh172/ikea_API.git"
+  },
+  "author": "Nitesh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nitesh172/ikea_API/issues"
+  },
+  "homepage": "https://github.com/nitesh172/ikea_API#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.3"
+  }
+}
