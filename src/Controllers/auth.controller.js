@@ -33,7 +33,6 @@ const register = async (req, res) => {
   try {
     let user = await User.findOne({
       email: req.body.email,
-      mobile: req.body.mobile,
     })
       .lean()
       .exec()
