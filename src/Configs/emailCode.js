@@ -92,6 +92,20 @@ module.exports = (url) => {
           <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" style="background-color: #f9f9f9;"><![endif]-->
 
           <div style="padding: 0px;">
+            <div style="max-width: 600px;margin: 0 auto;">
+              <div class="u-row">
+
+                <div class="u-col u-col-100">
+                  <div style="padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;">
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div style="padding: 0px;">
             <div style="max-width: 600px;margin: 0 auto;background-color: #ffffff;">
               <div class="u-row">
 
@@ -107,7 +121,7 @@ module.exports = (url) => {
                               <tr>
                                 <td style="padding-right: 0px;padding-left: 0px;" align="center">
 
-                                  <amp-img alt="Image" src="https://s3.amazonaws.com/unroll-images-production/projects%2F65915%2F1645688834946-svgexport-4.png" width="100" height="40" layout="intrinsic" style="width: 32%;max-width: 32%;">
+                                  <amp-img alt="Image" src="https://s3.amazonaws.com/unroll-images-production/projects%2F65915%2F1645697500565-svgexport-4.png" width="100" height="40" layout="intrinsic" style="width: 32%;max-width: 32%;">
 
                                   </amp-img>
                                 </td>
@@ -205,7 +219,7 @@ module.exports = (url) => {
 
                             <div style="line-height: 160%; text-align: center; word-wrap: break-word;">
                               <p style="font-size: 14px; line-height: 160%;"><span style="font-size: 22px; line-height: 35.2px;">Hi, </span></p>
-                              <p style="font-size: 14px; line-height: 160%;"><span style="font-size: 18px; line-height: 28.8px;">You're almost ready to get started. Please click on the button below to verify your email address and enjoy exclusive cleaning services with us! </span></p>
+                              <p style="font-size: 14px; line-height: 160%;"><span style="font-size: 18px; line-height: 28.8px;">You're almost ready to get started. Please click on the button below to verify your email address and enjoy exclusive services with us! </span></p>
                             </div>
 
                           </td>
@@ -240,7 +254,7 @@ module.exports = (url) => {
 
                             <div style="line-height: 160%; text-align: center; word-wrap: break-word;">
                               <p style="line-height: 160%; font-size: 14px;"><span style="font-size: 18px; line-height: 28.8px;">Thanks,</span></p>
-                              <p style="line-height: 160%; font-size: 14px;"><span style="font-size: 18px; line-height: 28.8px;">IKEA IN. Team</span></p>
+                              <p style="line-height: 160%; font-size: 14px;"><span style="font-size: 18px; line-height: 28.8px;">IKEA.in Team</span></p>
                             </div>
 
                           </td>
