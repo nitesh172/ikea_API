@@ -8,6 +8,7 @@ app.use(cors())
 
 app.use(express.urlencoded({ extended: true }))
 app.set("view engine", "ejs")
+const redis = require("./Configs/redis")
 
 const userController = require("./Controllers/user.controller")
 const {
@@ -16,7 +17,6 @@ const {
   verifyToken,
 } = require("./Controllers/auth.controller")
 const User = require("./Models/user.model")
-
 
 app.use("/users", userController)
 app.post("/register", register)
