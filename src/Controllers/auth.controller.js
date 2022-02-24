@@ -1,7 +1,6 @@
 //This is auth controller of our project..
 
 const User = require("../Models/user.model")
-require("dotenv").config()
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
 const redis = require("../Configs/redis")
@@ -32,7 +31,7 @@ const transporter = require("../Configs/email")
 const register = async (req, res) => {
   try {
     let user = await User.findOne({
-      email: req.body.email,
+      email: req.body.email
     })
       .lean()
       .exec()
