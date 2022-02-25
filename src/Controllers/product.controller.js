@@ -59,7 +59,7 @@ router.post("", async (req, res) => {
   }
 })
 
-router.get("/id=:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const id = req.params.id
     redis.get(id, async (err, value) => {
