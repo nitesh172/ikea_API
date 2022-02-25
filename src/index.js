@@ -28,6 +28,15 @@ app.post("/login", login)
 app.use("/pages", pageController)
 app.use("/products", productController)
 
+app.get("/admin/pages", async (req, res) => {
+  try {
+    return res.status(200).render("page.ejs")
+  } catch (error) {
+    console.log(error.message)
+    res.status(500).send(error.message)
+  }
+})
+
 app.get("/confrimation/:token", async (req, res) => {
   try {
     const user = await verifyToken(req.params.token)
