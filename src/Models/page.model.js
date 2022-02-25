@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 
 var Schema = mongoose.Schema
 
-var mainSubCategorySchema = new Schema({
+var pageSchema = new Schema({
   Category: {
     type: String,
     required: true,
@@ -33,6 +33,6 @@ var mainSubCategorySchema = new Schema({
   },
 })
 
-var mainSubCategory = mongoose.model("mainSubCategory", mainSubCategorySchema)
+var page = mongoose.model("page", pageSchema)
 
-module.exports = mainSubCategory
+module.exports = page
