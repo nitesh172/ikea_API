@@ -31,7 +31,7 @@ router.get("/:name", async (req, res) => {
   }
 })
 
-router.post("/create", fieldWise(arr), async (req, res) => {
+router.post("/create", async (req, res) => {
   try {
     const page = await Page.create(req.body)
 
