@@ -59,6 +59,29 @@ router.post("", async (req, res) => {
   }
 })
 
-router.get("/id=:id", crudController(Product, "Product").getOne)
+router.get("/id=:id", async (req, res) => {
+  try {
+    const id = req.params.id
+    redis.get(id, async (err, value) => {
+      if (err) console.log(err)
+
+      if (value) {
+        value = JSON.parse(value)
+        return res.status(201).send({ value, redis: true })
+      } else {
+        try {
+          const value = await Product.findById(id).lean().exec()
+          redis.set(id, JSON.stringify(value))
+          res.status(201).send({ value, redis: false })
+        } catch (err) {
+          res.status(201).send(err.message)
+        }
+      }
+    })
+  } catch (error) {
+    console.log(error.message)
+    return res.status(500).send(error.message)
+  }
+})
 
 module.exports = router
