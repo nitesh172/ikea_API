@@ -67,12 +67,16 @@ router.get("/id=:id", async (req, res) => {
 
       if (value) {
         value = JSON.parse(value)
-        return res.status(201).send({ value, redis: true })
+        return res.status(201).send(value)
       } else {
         try {
-          const value = await Product.findById(id).lean().exec()
+          const value = await Product.find({
+            _id: id,
+          })
+            .lean()
+            .exec()
           redis.set(id, JSON.stringify(value))
-          res.status(201).send({ value, redis: false })
+          res.status(201).send(value)
         } catch (err) {
           res.status(201).send(err.message)
         }
