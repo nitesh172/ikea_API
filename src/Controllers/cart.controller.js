@@ -18,3 +18,5 @@ router.get("/email=:email", async (req, res) => {
     res.status(500).send(error.message)
   }
 })
+
+module.exports = router
