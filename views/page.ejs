@@ -1,0 +1,117 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <style>
+    body {
+      font-family: "Open Sans", sans-serif;
+    }
+    div {
+      width: 13%;
+    }
+    input,
+    button {
+      width: 500px;
+      height: 30px;
+      margin: 10px 0;
+    }
+  </style>
+  <body>
+    <div>
+      <h1>Add Page</h1>
+      <div>
+      <label for="">Category</label>
+      <input type="text" placeholder="Category" id="Category" />
+      <label for="">mainCategory</label>
+      <input type="text" placeholder="mainCategory" id="mainCategory" />
+      <label for="">subCategory</label>
+      <input type="text" placeholder="subCategoryName" id="subCategoryName" />
+      <input type="text" placeholder="subCategoryURL" id="subCategoryURL" />
+      <button id="addfeatures" onclick="addDataF()">Add</button> <br />
+      <label for="">mainHeading</label>
+      <input type="text" placeholder="mainHeading" id="mainHeading" />
+      <label for="">mainDesc</label>
+      <input type="text" placeholder="mainDesc" id="mainDesc" />
+      <label for="">pageData</label>
+      <input type="text" placeholder="pHeading" id="pHeading" />
+      <input type="text" placeholder="pDesc" id="pDesc" />
+      <button id="addfeatures" onclick="addDataR()">Add</button> <br />
+
+      <button onclick="addProduct()">Add Product</button>
+      
+    </div>
+  </body>
+</html>
+
+<script>
+  var subCategory = []
+  var pageData = []
+  function addDataF() {
+    var subCategoryName = document.getElementById("subCategoryName").value
+    var subCategoryURL = document.getElementById("subCategoryURL").value
+    
+    subCategory.push({
+      subCategoryName,
+      subCategoryURL
+    })
+
+    subCategoryName = document.getElementById("subCategoryName").value = ""
+    subCategoryURL = document.getElementById("subCategoryURL").value = ""
+  }
+
+  function addDataR() {
+    var pHeading = document.getElementById("pHeading").value
+    var pDesc = document.getElementById("pDesc").value
+
+    pageData.push({
+      pHeading,
+      pDesc
+    })
+
+    pHeading = document.getElementById("pHeading").value = ""
+    pDesc = document.getElementById("pDesc").value = ""
+  }
+  
+  async function addProduct() {
+    var data = {
+      Category: document.getElementById("Category").value,
+      mainCategory: document.getElementById("mainCategory").value,
+      subCategory: subCategory,
+      mainHeading: document.getElementById("mainHeading").value,
+      mainDesc: document.getElementById("mainDesc").value,
+      pageData: pageData
+    }
+
+    let url = "https://ikeaserver.herokuapp.com/pages/create"
+
+    data = JSON.stringify(data)
+    console.log(data)
+
+    let response = await fetch(url, {
+      method: "POST",
+      body: data,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+
+    let d = await response.json()
+    console.log(d)
+
+    document.getElementById("Category").value = ""
+    document.getElementById("mainCategory").value = ""
+    document.getElementById("mainHeading").value = ""
+    document.getElementById("mainDesc").value = ""
+  }
+
+</script>
