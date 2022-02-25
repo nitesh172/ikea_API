@@ -6,7 +6,6 @@ const crudController = require("./crud.controller")
 const Product = require("../Models/product.model")
 const redis = require("../Configs/redis")
 
-
 router.get("", crudController(Product, "Product").get)
 router.get("/mainCategory=:name", async (req, res) => {
   try {
@@ -59,5 +58,7 @@ router.post("", async (req, res) => {
     res.status(500).send(error.message)
   }
 })
+
+router.get("/:id", crudController(Product, "Product").getOne)
 
 module.exports = router
