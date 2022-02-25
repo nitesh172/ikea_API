@@ -12,7 +12,7 @@ const redis = require("./Configs/redis")
 const instance = require("./Configs/razorpay")
 
 const userController = require("./Controllers/user.controller")
-const mainSubCategory = require("./Controllers/mainSubCategory.contoller")
+const pageController = require("./Controllers/page.controller")
 const productController = require("./Controllers/product.controller")
 const {
   register,
@@ -25,7 +25,7 @@ app.use("/users", userController)
 app.post("/register", register)
 app.post("/login", login)
 
-app.use("/pages", mainSubCategory)
+app.use("/pages", pageController)
 app.use("/products", productController)
 
 app.get("/confrimation/:token", async (req, res) => {
