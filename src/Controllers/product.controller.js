@@ -59,6 +59,6 @@ router.post("", async (req, res) => {
   }
 })
 
-router.get("/:id", crudController(Product, "Product").getOne)
+router.get("/id=:id", crudController(Product, "Product").getOne)
 
 module.exports = router
