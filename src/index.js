@@ -9,8 +9,11 @@ app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 app.set("view engine", "ejs")
 const redis = require("./Configs/redis")
+const instance = require("./Configs/razorpay")
 
 const userController = require("./Controllers/user.controller")
+const mainSubCategory = require("./Controllers/mainSubCategory.contoller")
+const productController = require("./Controllers/product.controller")
 const {
   register,
   login,
@@ -21,6 +24,9 @@ const User = require("./Models/user.model")
 app.use("/users", userController)
 app.post("/register", register)
 app.post("/login", login)
+
+app.use("/pages", mainSubCategory)
+app.use("/products", productController)
 
 app.get("/confrimation/:token", async (req, res) => {
   try {
@@ -62,6 +68,22 @@ app.get("/confrimation/:token", async (req, res) => {
     console.log(error.message)
     res.status(500).send(error.message)
   }
+})
+
+app.post("/razorpay", async (req, res) => {
+  const amount = Number(req.body.amount)
+  var options = {
+    amount: String(amount), // 500 * 100
+    currency: "INR",
+  }
+  instance.orders.create(options, function (err, order) {
+    console.log(order)
+    res.status(200).json(order)
+  })
+})
+
+app.post("/razorpay/success", (req, res) => {
+  res.render("success")
 })
 
 module.exports = app
