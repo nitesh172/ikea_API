@@ -37,6 +37,15 @@ app.get("/admin/pages", async (req, res) => {
   }
 })
 
+app.get("/admin/products", async (req, res) => {
+  try {
+    return res.status(200).render("product.ejs")
+  } catch (error) {
+    console.log(error.message)
+    res.status(500).send(error.message)
+  }
+})
+
 app.get("/confrimation/:token", async (req, res) => {
   try {
     const user = await verifyToken(req.params.token)

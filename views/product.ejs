@@ -1,0 +1,114 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <style>
+    body {
+      font-family: "Open Sans", sans-serif;
+    }
+    div {
+      width: 13%;
+    }
+    input,
+    button {
+      width: 500px;
+      height: 30px;
+      margin: 10px 0;
+    }
+  </style>
+  <body>
+    <div>
+      <h1>Add Product</h1>
+      <label for="">img1</label>
+      <input type="text" placeholder="img1" id="img1" />
+      <label for="">img2</label>
+      <input type="text" placeholder="img2" id="img2" />
+      <label for="">img3</label>
+      <input type="text" placeholder="img3" id="img3" />
+      <label for="">img4</label>
+      <input type="text" placeholder="img4" id="img4" />
+
+      <label for="">name</label>
+      <input type="type" placeholder="name" id="name" />
+
+      <label for="">companyName</label>
+      <input type="text" placeholder="companyName" id="companyName" />
+
+      <label for="">rating</label>
+      <input type="number" placeholder="rating" id="rating" />
+
+      <label for="">color</label>
+      <input type="text" placeholder="color" id="color" />
+
+      <label for="">Price</label>
+      <input type="number" placeholder="price" id="price" />
+
+      <label for="">desc</label>
+      <input type="text" placeholder="desc" id="desc" />
+
+      <label for="">Category</label>
+      <input type="text" placeholder="Category" id="Category" />
+      <label for="">mainCategory</label>
+      <input type="text" placeholder="mainCategory" id="mainCategory" />
+      <label for="">subCategory</label>
+      <input type="text" placeholder="subCategory" id="subCategory" />
+
+      <button onclick="addProduct()">Add Product</button>
+    </div>
+  </body>
+</html>
+
+<script>
+  async function addProduct() {
+    const aa = document.getElementById("img1").value
+    console.log(aa)
+    var data = {
+      img1: document.getElementById("img1").value,
+      img2: document.getElementById("img2").value,
+      img3: document.getElementById("img3").value,
+      img4: document.getElementById("img4").value,
+      name: document.getElementById("name").value,
+      companyName: document.getElementById("companyName").value,
+      rating: document.getElementById("rating").value,
+      color: document.getElementById("color").value,
+      price: document.getElementById("price").value,
+      desc: document.getElementById("desc").value,
+      Category: document.getElementById("Category").value,
+      mainCategory: document.getElementById("mainCategory").value,
+      subCategory: document.getElementById("subCategory").value,
+    }
+
+    let url = "https://ikeaserver.herokuapp.com/products"
+
+    data = JSON.stringify(data)
+    console.log(data)
+
+    let response = await fetch(url, {
+      method: "POST",
+      body: data,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+
+    let d = await response.json()
+    console.log(d)
+    document.getElementById("img1").value = ""
+    document.getElementById("img2").value = ""
+    document.getElementById("img3").value = ""
+    document.getElementById("img4").value = ""
+    document.getElementById("name").value = ""
+    document.getElementById("companyName").value = ""
+    document.getElementById("rating").value = ""
+    document.getElementById("color").value = ""
+    document.getElementById("price").value = ""
+    document.getElementById("desc").value = ""
+    document.getElementById("Category").value = ""
+    document.getElementById("mainCategory").value = ""
+    document.getElementById("subCategory").value = ""
+  }
+</script>
