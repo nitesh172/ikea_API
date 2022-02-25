@@ -34,3 +34,5 @@ var mainSubCategorySchema = new Schema({
 })
 
 var mainSubCategory = mongoose.model("mainSubCategory", mainSubCategorySchema)
+
+module.exports = mainSubCategory
