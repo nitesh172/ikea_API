@@ -9,7 +9,7 @@ router.get("", crudController(Page, "Page").get)
 router.get("/:name", async (req, res) => {
   try {
     const pageName = req.params.name
-    redis.get(pageName, async (err, value) => {
+    redis.get(page.pageName, async (err, value) => {
       if (err) console.log(err)
 
       if (value) {
@@ -18,7 +18,7 @@ router.get("/:name", async (req, res) => {
       } else {
         try {
           const value = await Page.findOne({ mainCategory: pageName }).lean().exec()
-          redis.set(pageName, JSON.stringify(value))
+          redis.set(page.pageName, JSON.stringify(value))
           res.status(201).send(value)
         } catch (err) {
           res.status(201).send(err.message)
