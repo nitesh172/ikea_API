@@ -1,6 +1,7 @@
 const { Router } = require("express")
 const crudController = require("./crud.controller")
 const Cart = require("../Models/cart.model")
+const redis = require("../Configs/redis")
 
 const router = Router()
 
