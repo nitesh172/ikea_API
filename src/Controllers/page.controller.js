@@ -1,14 +1,15 @@
+// This is page controller of our project..
 const { Router } = require("express")
 const crudController = require("./crud.controller")
-const page = require("../Models/page.model")
+const Page = require("../Models/page.model")
 const router = Router()
 const redis = require("../Configs/redis")
 
-router.get("", crudController(page, "page").get)
+router.get("", crudController(Page, "Page").get)
 router.get("/:name", async (req, res) => {
   try {
-    const page = req.params.name
-    redis.get(page, async (err, value) => {
+    const pageName = req.params.name
+    redis.get(pageName, async (err, value) => {
       if (err) console.log(err)
 
       if (value) {
@@ -16,11 +17,8 @@ router.get("/:name", async (req, res) => {
         return res.status(201).send(value)
       } else {
         try {
-          const value = await page
-            .findOne({ page })
-            .lean()
-            .exec()
-          redis.set(page, JSON.stringify(value))
+          const value = await Page.findOne({ mainCategory: pageName }).lean().exec()
+          redis.set(pageName, JSON.stringify(value))
           res.status(201).send(value)
         } catch (err) {
           res.status(201).send(err.message)
@@ -33,23 +31,19 @@ router.get("/:name", async (req, res) => {
   }
 })
 
-router.post("/create", async (req, res) => {
+router.post("/create", fieldWise(arr), async (req, res) => {
   try {
+    const page = await Page.create(req.body)
 
-    const page = await page.create(req.body)
-
-    redis.get("page", async (err, value) => {
+    redis.get("Page", async (err, value) => {
       if (err) console.log(err)
 
       if (value) {
         value = JSON.parse(value)
-        redis.set(
-          "page",
-          JSON.stringify([...value, page])
-        )
+        redis.set("Page", JSON.stringify([...value, page]))
       } else {
-        value = await page.find().lean().exec()
-        redis.set("page", JSON.stringify(value))
+        value = await model.find().lean().exec()
+        redis.set("Page", JSON.stringify(value))
       }
     })
 
