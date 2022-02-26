@@ -67,7 +67,7 @@ router.patch("/email=:email", async (req, res) => {
       redis.set(email, JSON.stringify(cart))
 
       const carts = await Cart.find().lean().exec()
-      redis.set(key, JSON.stringify(carts))
+      redis.set(email, JSON.stringify(carts))
     })
     res.status(201).send(item)
   } catch (error) {
