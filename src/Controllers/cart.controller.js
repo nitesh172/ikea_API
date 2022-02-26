@@ -40,10 +40,10 @@ router.post("", async (req, res) => {
 
       if (value) {
         value = JSON.parse(value)
-        redis.set(key, JSON.stringify([...value, cart]))
+        redis.set("Cart", JSON.stringify([...value, cart]))
       } else {
         value = await Cart.find().lean().exec()
-        redis.set(key, JSON.stringify(value))
+        redis.set("Cart", JSON.stringify(value))
       }
     })
     return res.status(201).send(cart)
