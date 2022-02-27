@@ -10,6 +10,10 @@ router.get("", crudController(Cart, "Cart").get)
 router.get("/email=:email", async (req, res) => {
   try {
     const email = req.params.email
+
+    const cartId = await Cart.findOne({ userId: email }).lean().exec()
+    console.log(cartId)
+
     redis.get(email, async (err, value) => {
       if (err) console.log(err)
 
