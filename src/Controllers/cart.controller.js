@@ -59,18 +59,20 @@ router.post("", async (req, res) => {
 router.patch("/email=:email", async (req, res) => {
   try {
     const email = req.params.email
-    const cart = await Cart.findOneAndUpdate({ userId: email }, req.body, {
+
+    const cartId = await Cart.findOne({ userId: email }).lean().exec()
+
+    const cart = await Cart.findByIdAndUpdate(cartId._id, req.body, {
       new: true,
     })
-      .lean()
-      .exec()
+
     redis.get(email, async (err, fetchedPost) => {
       if (err) console.log(err.message)
 
       redis.set(email, JSON.stringify(cart))
 
       const carts = await Cart.find().lean().exec()
-      redis.set(email, JSON.stringify(carts))
+      redis.set("Cart", JSON.stringify(carts))
     })
     res.status(201).send(item)
   } catch (error) {
