@@ -12,7 +12,6 @@ router.get("/email=:email", async (req, res) => {
     const email = req.params.email
 
     const cartId = await Cart.findOne({ userId: email }).lean().exec()
-    console.log(cartId)
 
     redis.get(email, async (err, value) => {
       if (err) console.log(err)
@@ -22,7 +21,7 @@ router.get("/email=:email", async (req, res) => {
         return res.status(201).send(value)
       } else {
         try {
-          const value = await Cart.findOne({ userId: email }).lean().exec()
+          const value = await Cart.findById(cartId._id).lean().exec()
           redis.set(email, JSON.stringify(value))
           res.status(201).send(value)
         } catch (err) {
